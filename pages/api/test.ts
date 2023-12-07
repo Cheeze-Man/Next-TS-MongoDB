@@ -1,3 +1,12 @@
-export default function handler(req: any, res: any) {
-  return res.status(200).json("처리 완료");
+import { connectDB } from "@/util/database";
+
+export default async function handler(req: any, res: any) {
+  if (req.method == "GET") {
+    const db = (await connectDB).db("forum");
+    let result = await db.collection("post").find().toArray();
+    res.status(200).json(result);
+  }
+  if (req.method == "POST") {
+    return res.status(200).json({ message: "your request = post" });
+  }
 }
