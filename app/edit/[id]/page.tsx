@@ -7,7 +7,9 @@ export default async function Detail(props: any) {
     .collection("post")
     .findOne({ _id: new ObjectId(props.params.id) });
 
-  await db.collection("post").updateOne({}, { $set: {} });
+  await db
+    .collection("post")
+    .updateOne({ _id: new ObjectId(props.params.id) }, { $set: {} });
 
   return (
     <div className="p-5">
