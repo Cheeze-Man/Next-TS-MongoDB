@@ -14,7 +14,7 @@ export default async function Detail(props: any) {
   return (
     <div className="p-5">
       <h4 className="my-5 font-bold">수정 페이지</h4>
-      <form action="/api/post/new" method="POST">
+      <form action="/api/post/edit" method="POST">
         <input
           className="w-full mb-4 p-2.5 border border-gray-300 rounded"
           name="title"
@@ -29,6 +29,7 @@ export default async function Detail(props: any) {
           type="text"
           value={result?.content}
         />
+        <input className="hidden" name="_id" value={result?._id.toString()} />
         <button
           className="bg-gray-300 hover:bg-gray-400 text-white font-bold py-2.5 px-4 rounded"
           type="submit"
