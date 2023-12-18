@@ -14,7 +14,7 @@ export default async function handler(req: any, res: any) {
       let db = (await connectDB).db("forum");
       let result = db
         .collection("post")
-        .updateOne({ _id: new ObjectId(req.body._id) }, { $set: req.body });
+        .updateOne({ _id: new ObjectId(req.body._id) }, { $set: edited });
       res.redirect(302, "/list");
     } catch (error) {
       return res.status(500).json(error);

@@ -1,15 +1,11 @@
 import { connectDB } from "@/util/database";
 import { Db, ObjectId } from "mongodb";
 
-export default async function Detail(props: any) {
+export default async function Edit(props: any) {
   const db: Db = (await connectDB).db("forum");
   const result = await db
     .collection("post")
     .findOne({ _id: new ObjectId(props.params.id) });
-
-  await db
-    .collection("post")
-    .updateOne({ _id: new ObjectId(props.params.id) }, { $set: {} });
 
   return (
     <div className="p-5">
@@ -20,14 +16,14 @@ export default async function Detail(props: any) {
           name="title"
           placeholder="Title"
           type="text"
-          value={result?.title}
+          defaultValue={result?.title}
         />
         <input
           className="w-full mb-4 p-2.5 border border-gray-300 rounded"
           name="content"
           placeholder="Content"
           type="text"
-          value={result?.content}
+          defaultValue={result?.content}
         />
         <input className="hidden" name="_id" value={result?._id.toString()} />
         <button
