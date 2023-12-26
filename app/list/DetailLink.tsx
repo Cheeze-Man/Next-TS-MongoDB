@@ -20,7 +20,20 @@ export default function DetailLink(props: any) {
       <p className="text-gray-500 my-1.5">{post.content}</p>
       <span
         onClick={() => {
-          fetch("/api/test", { method: "DELETE" }).then(() => {});
+          fetch("/api/post/delete", { method: "DELETE", body: post._id })
+            .then((r) => {
+              if (r.status == 200) {
+                return r.json();
+              } else {
+                alert("서버 문제로 인해 삭제에 실패하였습니다.");
+              }
+            })
+            .then((result) => {
+              alert(result);
+            })
+            .catch((error) => {
+              console.error(error);
+            });
         }}
         className="text-gray-500 font-bold my-1.5 cursor-pointer"
       >
